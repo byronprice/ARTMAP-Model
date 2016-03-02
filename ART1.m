@@ -85,15 +85,16 @@ xlabel('Vigilance');ylabel('ART Categories');
 
 figure();
 count = 0;
-randNums = randi([1,60000],20);
+randNums = randi([1,60000],[1,20]);
+T = myNet.TD;
 for ii=randNums
     count = count+1;
-    T = myNet.TD;
     I = Images(:,ii);
     s1 = (T*I)./(0.5+sum(T,2));
     [~,index] = max(s1);
     I = I(1:784);
     subplot(4,5,count);imagesc(reshape(I,[28,28]));title(sprintf('Cateogry %i',index));
+    clear I;
 end
 
 
